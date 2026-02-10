@@ -253,6 +253,14 @@ function volverACarpeta() {
     document.getElementById("carpetaScreen").classList.remove("hidden");
     document.getElementById("zonaEstudio").innerHTML="";
 }
+function reiniciarApp() {
+    if (!confirm("¿Seguro que quieres borrar TODO tu progreso?")) return;
+
+    localStorage.clear(); // borra TODO
+    alert("App reiniciada");
+    location.reload();
+}
+window.reiniciarApp = reiniciarApp;
 window.crearCarpeta = crearCarpeta;
 window.volver = volver;
 window.volverACarpeta = volverACarpeta;
@@ -262,5 +270,6 @@ window.generarFlashcards = generarFlashcards;
 window.login = login;
 window.abrirCarpeta = abrirCarpeta;
 window.eliminarCarpeta = eliminarCarpeta;
+
 
 
