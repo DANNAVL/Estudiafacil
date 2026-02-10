@@ -101,22 +101,42 @@ function abrirCarpeta(id){
     document.getElementById("temaCarpeta").value = carpeta.tema || "";
     document.getElementById("infoCarpeta").value = carpeta.contenido || "";
 }
- function correccion(){
-	const inputs=
-	document.querySelectorAll("#zonaEstudio input");
-	if (inputs.length === 0) { alert("No hay preguntas para corregir"); return;
-}
-	let correctas =0;
-	inputs.forEach(input => {
-	const user=
-	input.value.trim().toLowerCase();
-	const correcta=
-	input.dataset.correcta.toLowerCase();
-	if (user === correcta) correctas++;
-});
-	const nota= Math.round((correctas/inputs.length)*10);
-	alert(`SACASTE ${nota}/10!!!`);
-	guardarProgreso(nota);
+function correccion() {
+    const inputs = document.querySelectorAll("#zonaEstudio input");
+
+    if (inputs.length === 0) {
+        alert("No hay preguntas para corregir");
+        return;
+    }
+
+    let correctas = 0;
+    let erroresHTML = "<h3>📊 RESULTADOS</h3>";
+
+    inputs.forEach((input, i) => {
+        const user = input.value.trim().toLowerCase();
+        const correcta = input.dataset.correcta.toLowerCase();
+
+        if (user === correcta) {
+            correctas++;
+            erroresHTML += `<p>✅ Pregunta ${i + 1}: Correcta</p>`;
+        } else {
+            erroresHTML += `
+                <p style="color:red;">
+                ❌ Pregunta ${i + 1}: Incorrecta <br>
+                👉 Tu respuesta: <b>${input.value || "(vacío)"}</b><br>
+                ✔ Respuesta correcta: <b>${input.dataset.correcta}</b>
+                </p>
+            `;
+        }
+    });
+
+    const nota = Math.round((correctas / inputs.length) * 10);
+    erroresHTML += `<h2>⭐ Nota final: ${nota}/10</h2>`;
+    erroresHTML += `<button onclick="volverACarpeta()">Volver</button>`;
+
+    document.getElementById("zonaEstudio").innerHTML = erroresHTML;
+
+    guardarProgreso(nota);
 }
   function guardarProgreso(nota) {
 	let historial=
@@ -242,3 +262,4 @@ window.generarFlashcards = generarFlashcards;
 window.login = login;
 window.abrirCarpeta = abrirCarpeta;
 window.eliminarCarpeta = eliminarCarpeta;
+
