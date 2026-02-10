@@ -1,6 +1,3 @@
-document.addEventListener("DOMContentLoaded", function () {
-    localStorage.removeItem("usuario"); // obliga a mostrar login siempre
-});
 function login() {
     const usernameInput = document.getElementById("usernameInput");
     if (!usernameInput) return;
@@ -269,6 +266,7 @@ window.generarFlashcards = generarFlashcards;
 window.login = login;
 window.abrirCarpeta = abrirCarpeta;
 window.eliminarCarpeta = eliminarCarpeta;
+
 
 
 
