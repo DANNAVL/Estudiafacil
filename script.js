@@ -137,7 +137,6 @@ function correccion() {
 
     guardarProgreso(nota);
 }
-}
   function guardarProgreso(nota) {
 	let historial=
 	JSON.parse(localStorage.getItem("progreso")) || [];
@@ -270,6 +269,7 @@ window.generarFlashcards = generarFlashcards;
 window.login = login;
 window.abrirCarpeta = abrirCarpeta;
 window.eliminarCarpeta = eliminarCarpeta;
+
 
 
 
