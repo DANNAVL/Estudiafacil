@@ -129,7 +129,6 @@ function correccion() {
             `;
         }
     });
-}
     const nota = Math.round((correctas / inputs.length) * 10);
     erroresHTML += `<h2>⭐ Nota final: ${nota}/10</h2>`;
     erroresHTML += `<button onclick="volverACarpeta()">Volver</button>`;
@@ -137,6 +136,7 @@ function correccion() {
     document.getElementById("zonaEstudio").innerHTML = erroresHTML;
 
     guardarProgreso(nota);
+}
 }
   function guardarProgreso(nota) {
 	let historial=
@@ -270,6 +270,7 @@ window.generarFlashcards = generarFlashcards;
 window.login = login;
 window.abrirCarpeta = abrirCarpeta;
 window.eliminarCarpeta = eliminarCarpeta;
+
 
 
 
